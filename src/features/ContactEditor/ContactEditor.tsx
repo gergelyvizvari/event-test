@@ -1,21 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-
-import { CONTACT_EDITOR_EVENTS } from './ContactEditor.events';
-import { useDispatch, useListener } from '../../EventHooks';
-import { TContact } from '../ContactList/ContactList.types';
-import { CONTACT_LIST_EVENTS } from '../ContactList/ContactList.events';
+import { useFeatures } from './ContactEditor.useFeatures';
 
 export function ContactEditor() {
-  const [open, setOpen] = useState(false);
-  const [contact, setContact] = useState<any>(null);
 
-  useListener(CONTACT_EDITOR_EVENTS.OPEN_CONTACT_EDITOR, (contact: TContact) => {
-    setContact(contact);
-    setOpen(true);
-  });
-
-  const onUpdateDispatch = useDispatch(CONTACT_LIST_EVENTS.UPDATE_CONTACT);
+  const { open, contact, setContact, setOpen, onUpdateDispatch } = useFeatures();
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -49,7 +38,7 @@ export function ContactEditor() {
                           setContact({ ...contact, name: e.target.value });
                         }}
                         placeholder="name"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                        className="w-full border px-3 py-2 rounded-md"
                       />
                       <input
                         type="text"
@@ -57,23 +46,21 @@ export function ContactEditor() {
                         onChange={(e) => {
                           setContact({ ...contact, email: e.target.value });
                         }}
+                        className="w-full border px-3 py-2 rounded-md"
                         placeholder="name"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
                       />
                     </div>
                   </div>
                 </div>
                 <div className="flex justify-between gap-4 mt-4">
                   <button
-                    type="button"
-                    className="w-full justify-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={() => setOpen(false)}
+                    type="button"                    
+                    onClick={() => setOpen(false)}                    
                   >
                     cancel
                   </button>
                   <button
                     type="button"
-                    className=" w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={() => {
                       onUpdateDispatch(contact);
                       setOpen(false);

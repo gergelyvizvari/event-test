@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useEffectDispatch, useListener } from '../../EventHooks';
 import { TContact } from '../ContactList/ContactList.types';
 import { CONTACT_LIST_EVENTS } from '../ContactList/ContactList.events';
-import { CONTACT_EDITOR_EVENTS } from '../ContractEditor/ContactEditor.events';
+import { CONTACT_EDITOR_EVENTS } from '../ContactEditor/ContactEditor.events';
 
 export function useFeatures() {
   const [contact, setContact] = useState<TContact | null>(null);

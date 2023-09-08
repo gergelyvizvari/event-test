@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '../../components/Box';
-import { useListFeatures } from './ContactList.useFeatures';
 import clsx from 'clsx';
+import { useListContext } from './ContactList.featureProvider';
 
 const className = {
   contactRow: `border b-2 rounded-md p-4 gap-2 hover:bg-gray-200 cursor-pointer flex justify-between`,
@@ -9,7 +9,7 @@ const className = {
 };
 
 export function ContactList() {
-  const { contacts, selectedContact, onContactSelect, dispatchOnEdit } = useListFeatures();
+  const { contacts, selectedContact, onContactSelect, dispatchOnEdit } = useListContext();
 
   return (
     <Box>
