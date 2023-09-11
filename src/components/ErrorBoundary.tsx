@@ -2,7 +2,7 @@ import React, { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;
-  component?: string;
+  componentName?: string;
 }
 
 interface State {
@@ -25,7 +25,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <h1>Sorry.. there was an error {this.props.component ? `in ${this.props.component}` : ''}</h1>;
+      return <h1>Sorry.. there was an error {this.props.componentName ? `in ${this.props.componentName}` : ''}</h1>;
     }
 
     return this.props.children;

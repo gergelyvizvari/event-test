@@ -3,7 +3,8 @@ import { ContactEmail } from './ContactEmail';
 import { ContactName } from './ContactName';
 import { Box } from '../../components/Box';
 import { useFeatures } from './ContactDetails.useFeatures';
-import {ErrorBoundary} from '../../components/ErrorBoundary';
+import { ErrorBoundary } from '../../components/ErrorBoundary';
+
 
 export function ContactDetails() {  
   const { contact, dispatchOnEdit } = useFeatures();
